@@ -1,0 +1,7 @@
+matplotlib
+Pillow
+PyQt5
+PyQt5_sip
+torch
+torchvision
+tqdm
