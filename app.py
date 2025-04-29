@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import (QApplication, QWidget, QLabel, QPushButton,
 from PyQt5.QtGui import QPixmap, QColor
 from PyQt5.QtCore import Qt
 from PIL import Image
-from models import ResNet50  # 你的模型类
+from models import ResNet34  # 你的模型类
 
 # 读取类别映射
 def load_class_labels(file_path="mapping.txt"):
@@ -22,13 +22,12 @@ transform = transforms.Compose([
     transforms.Resize(256),
     transforms.CenterCrop(224),
     transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                         std=[0.229, 0.224, 0.225]),
+    transforms.Normalize(mean=[0.56719673, 0.5293289, 0.48351972],
+                         std=[0.20874391, 0.21455203, 0.22451781]),
 ])
-
 # 加载模型
-def load_model(model_path="ResNet50_best_model.pth", num_classes=40):
-    model = ResNet50(num_classes=num_classes)
+def load_model(model_path="ResNet34_best_model.pth", num_classes=40):
+    model = ResNet34(num_classes=num_classes)
     model.load_state_dict(torch.load(model_path, map_location=torch.device("cpu"),weights_only=True))
     model.eval()
     return model
